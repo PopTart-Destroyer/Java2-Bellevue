@@ -20,14 +20,13 @@ public class Purchase
     //Sales tax percent static field
     private final static double TAX = .075;  
     //property invoice
-    public String setInvoiceNum(String invoice){
-        return invoiceNum = invoice;
+    public void setInvoiceNum(String invoice){
+         invoiceNum = invoice;
     }
     //property saleAmount(
-    public double setSaleAmt(double amtOfSales){
+    public void setSaleAmt(double amtOfSales){
         saleAmt = amtOfSales;
         salesTax = TAX * amtOfSales;
-        return salesTax;
     }
     
     public static void main(String[] args)
