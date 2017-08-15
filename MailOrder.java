@@ -31,7 +31,9 @@ public class MailOrder
             BufferedWriter writer = new BufferedWriter(fw);
 
             System.out.print("Enter item number (999 to quit): ");
-            itemNum = Integer.parseInt(sc.nextLine());
+                //itemNum = Integer.parseInt(sc.nextLine());
+		itemNum = sc.nextInt();
+		sc.nextLine();
             
             while(itemNum != QUIT)
               {
@@ -41,7 +43,9 @@ public class MailOrder
                 writer.write(s, 0, s.length());
                 writer.newLine();
                 System.out.print("Enter item number (999 to quit): ");
-                itemNum = Integer.parseInt(sc.nextLine());
+                //itemNum = Integer.parseInt(sc.nextLine());
+		itemNum = sc.nextInt();
+		sc.nextLine();
             }
           writer.close();  
         }
