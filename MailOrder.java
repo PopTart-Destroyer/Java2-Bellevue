@@ -15,41 +15,51 @@ public class MailOrder
      public static void main(String[] args) throws IOException
       {
         Scanner sc = new Scanner(System.in);
-        File filename = new File("C:\\javaSource\\mailOrderData.txt");
-        String delimiter = ",";
+		// Define file directory for creation!
+        File file = new File("C:\\Java\\mailOrderData.txt");
+        String delimiter = ",";	
         String s = "";
         int qty;
         int itemNum;
-        final int QUIT = 999;
-        
-       
-        try{         
-           if (!filename.exists()){
-               filename.createNewFile();
-           }
-            FileWriter fw = new FileWriter(filename,true);
+        final int QUIT = 999;	//Optional, change to favoriate quit numbers
+               
+        try{      
+			//checking if directory exists, if not create it!
+			if (!file.exists()){
+				if(file.getParentFile().mkdir()){  //getParentFile will create file in current working dir
+					System.out.println("Directory is created!");
+				}
+				else
+				{
+					System.out.println("Failed to create directory!");
+					
+				}
+			}
+			//check if file exists, if not create it!
+           if (!file.exists()){
+               file.createNewFile();
+			   System.out.println("File created!\n");
+           } 
+			//file writer IO
+            FileWriter fw = new FileWriter(file,true);
             BufferedWriter writer = new BufferedWriter(fw);
-
-            System.out.print("Enter item number (999 to quit): ");
-                //itemNum = Integer.parseInt(sc.nextLine());
-		itemNum = sc.nextInt();
-		sc.nextLine();
+			//Get user input
+            System.out.print("Enter item number ("+QUIT+" to quit): ");
+            itemNum = Integer.parseInt(sc.nextLine());	//parse out Int and clear buffer
             
             while(itemNum != QUIT)
               {
                 System.out.print("Enter a quantity: ");
-                qty = Integer.parseInt(sc.nextLine());
-                s = itemNum + delimiter + qty;
-                writer.write(s, 0, s.length());
-                writer.newLine();
-                System.out.print("Enter item number (999 to quit): ");
-                //itemNum = Integer.parseInt(sc.nextLine());
-		itemNum = sc.nextInt();
-		sc.nextLine();
+                qty = Integer.parseInt(sc.nextLine());  //parse out Int and clear buffer
+                s = itemNum + delimiter + qty;	//format input
+                writer.write(s, 0, s.length());	//write output
+                writer.newLine();	//create new line for next set of outputs
+                System.out.print("Enter item number ("+QUIT+" to quit): ");
+                itemNum = Integer.parseInt(sc.nextLine());  //parse out Int and clear buffer
             }
-          writer.close();  
+          writer.close();  //close writer
         }
-        catch(NumberFormatException nfe){
+        catch(NumberFormatException nfe){		
             System.out.println("Message: " + nfe);
             System.out.println("Program Ending..");
             System.exit(0);
