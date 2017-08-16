@@ -26,7 +26,8 @@ public class MailOrder
         try{      
 			//checking if directory exists, if not create it!
 			if (!file.exists()){
-				if(file.getParentFile().mkdir()){  //getParentFile will create file in current working dir
+				//getParentFile() method returns the abstract pathname of this abstract pathname's parent
+				if(file.getParentFile().mkdir()){ 
 					System.out.println("Directory is created!");
 				}
 				else
